@@ -12,6 +12,8 @@ class DeviceController extends Controller
     {
         $device = new Device;
         $device->nama_device = $request->nama_device;
+        $device->nilai_min = $request->nilai_min;
+        $device->nilai_max = $request->nilai_max;
         $device->nilai = $request->nilai;
         $device->save();
         
@@ -58,9 +60,8 @@ class DeviceController extends Controller
 
     public function showDevices()
     {
-        $devices = Device::all(); 
         return view('devices', [
-            "title" => "Devices",
+            "title" => "devices",
             "devices" => Device::all()
         ]);
     }

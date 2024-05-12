@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Data;
+use App\Models\Device;
 use Illuminate\Http\Request;
 
 class DataController extends Controller
@@ -27,11 +28,13 @@ class DataController extends Controller
     }
 
     public function web_show(string $id){
+
         return view('device',[
             "title" =>"device",
-            "device" => data::find($id),
+            "device" => Device::find($id),
             "data" => Data::where('device_id', $id)->orderby('created_at', 'DESC')->get()
         ]);
     }
+
 }
     

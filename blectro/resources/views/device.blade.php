@@ -1,10 +1,10 @@
 @extends('layouts.main')
 @section('container')
-<h1>{{$device["nama_device"]}}</h1>
+<h1>{{ $device["nama_device"] }}</h1>
     @php
         $i = 1;
     @endphp
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table class="table table-striped-columns">
         <tr>
             <th scope>No</th>
             <th scope>DateTime</th>
