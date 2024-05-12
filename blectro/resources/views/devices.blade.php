@@ -1,17 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>blectro | Devices</title>
-</head>
-<body>
+@extends('layouts.main')
+@section('container')
     <h1>Devices</h1>
-    @foreach ($devices as $device)
-        <h2>{{ $device->nama_device }}</h2>
-        <h3>Range value: {{ $device->nilai_min }} - {{ $device->nilai_max }}</h3>
-        <p>Current value: {{ $device->nilai }}</p>
-    @endforeach
-</body>
-</html>
+    @php
+        $i = 1;
+    @endphp
+    <table border="1" cellpadding="10" cellspacing="0">
+        <tr>
+            <td>No</td>
+            <td>ID</td>
+            <td>Device Name</td>
+            <td>Min</td>
+            <td>Max</td>
+            <td>Current Value</td>
+        </tr>
+        @foreach($devices as $device)
+            <tr>
+                <td>{{ $i }}</td>
+                <td>
+                    <a href="/devices/{{ $device['id'] }}">{{ $device['id'] }}</a>
+                </td>
+                <td>{{ $device['nama_device'] }}</td>
+                <td>{{ $device['nilai_min'] }}</td>
+                <td>{{ $device['nilai_max'] }}</td>
+                <td>{{ $device['nilai'] }}</td>
+            </tr>
+            @php
+                $i++;
+            @endphp
+        @endforeach
+    </table>
+@endsection
+
+
