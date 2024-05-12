@@ -1,13 +1,18 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Models\Device;
 use Illuminate\Http\Request;
+
 class DeviceController extends Controller
 {
-        public function index()
-        {
-        return Device ::all();
-        }
+    public function index()
+    {
+        $devices = Device::all();
+        return view('/devices', compact('devices'));
+    }
+
     public function store(Request $request)
     {
         $device = new Device;
@@ -16,16 +21,20 @@ class DeviceController extends Controller
         $device->nilai_max = $request->nilai_max;
         $device->nilai = $request->nilai;
         $device->save();
+
         return response()->json([
-        "message" => "Device telah ditambahkan."
+            "message" => "Device telah ditambahkan."
         ], 201);
     }
+
     public function show(string $id)
     {
-    return Device ::find($id);
+        $device = Device::find($id);
+        return view('devices.show', compact('device'));
     }
-        public function update(Request $request, string $id)
-        {
+
+    public function update(Request $request, string $id)
+    {
         if (Device::where('id', $id)->exists()) {
             $device = Device::find($id);
             $device->nama_device = is_null($request->nama_device) ? $device->nama_device : $request->nama_device;
@@ -34,25 +43,26 @@ class DeviceController extends Controller
             $device->nilai = is_null($request->nilai) ? $device->nilai : $request->nilai;
             $device->save();
             return response()->json([
-            "message" => "Device telah diupdate."
+                "message" => "Device telah diupdate."
             ], 201);
         } else {
             return response()->json([
-            "message" => "Device tidak ditemukan."
+                "message" => "Device tidak ditemukan."
             ], 404);
         }
     }
-        public function destroy(string $id)
-        {
+
+    public function destroy(string $id)
+    {
         if (Device::where('id', $id)->exists()) {
             $device = Device::find($id);
             $device->delete();
             return response()->json([
-            "message" => "Device telah dihapus."
+                "message" => "Device telah dihapus."
             ], 201);
         } else {
             return response()->json([
-            "message" => "Device tidak ditemukan."
+                "message" => "Device tidak ditemukan."
             ], 404);
         }
     }
