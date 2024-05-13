@@ -7,11 +7,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
         body {
-            background-color: black; /* Mengubah warna background body menjadi hitam */
-            color: white; /* Mengubah warna teks menjadi putih */
+            background-color: black; 
+            color: white;
         }
         .navbar-dark.bg-dark {
-            background-color: black; /* Mengubah warna background navbar menjadi hitam */
+            background-color: black;
         }
     </style>
 </head>

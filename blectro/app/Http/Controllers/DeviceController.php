@@ -66,17 +66,17 @@ class DeviceController extends Controller
         ]);
     }
 
-    public function getDeviceId($id)
-{
-    $device = Device::find($id); 
-    if (!$device) {
-        return "Perangkat dengan ID $id tidak ditemukan.";
-    }
-    return view('device', [
-        "title" => "device",
-        "devices" => [$device], 
-        "nilai" => Device::find($id)
-    ]);
-}   
+        public function getDeviceId($id)
+    {
+        $device = Device::find($id); 
+        if (!$device) {
+            return "Perangkat dengan ID $id tidak ditemukan.";
+        }
+        return view('device', [
+            "title" => "device",
+            "devices" => [$device], 
+            "nilai" => Device::find($id)
+        ]);
+    }   
 
 }

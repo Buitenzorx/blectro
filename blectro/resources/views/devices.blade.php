@@ -10,8 +10,6 @@
                 <th scope="col">No</th>
                 <th scope="col">ID</th>
                 <th scope="col">Device Name</th>
-                <th scope="col">Min</th>
-                <th scope="col">Max</th>
                 <th scope="col">Current Value</th>
             </tr>
         </thead>
@@ -23,8 +21,6 @@
                         <a href="/devices/{{ $device['id'] }}">{{ $device['id'] }}</a>
                     </td>
                     <td>{{ $device['nama_device'] }}</td>
-                    <td>{{ $device['nilai_min'] }}</td>
-                    <td>{{ $device['nilai_max'] }}</td>
                     <td>{{ $device['nilai'] }}</td>
                 </tr>
                 @php

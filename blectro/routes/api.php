@@ -5,9 +5,7 @@ use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\DataController;
 
 
-Route::get('/user', function (Request $request) {
-return $request ->user();
-})->middleware('auth:sanctum');
+Route::get('/user', function (Request $request) { return $request ->user(); })->middleware('auth:sanctum');
 Route::get('/devices', [DeviceController::class, 'index']);
 Route::post('/devices', [DeviceController::class, 'store']);
 Route::get('/devices/{id}', [DeviceController::class, 'show']);
