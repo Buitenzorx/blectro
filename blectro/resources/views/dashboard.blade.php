@@ -1,6 +1,10 @@
 @extends('layouts.main')
 @section('container')
+    
     <style>
+        .body{
+            color: black;
+        }
         h1 {
             text-align: center;
             margin-top: 50px; 

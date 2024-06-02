@@ -7,6 +7,7 @@ class DeviceController extends Controller
     public function index()
     {
     return Device::all();
+    
     }
     public function store(Request $request)
     {

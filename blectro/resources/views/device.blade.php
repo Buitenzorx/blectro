@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('container')
-<h1>Log Data : {{ $device["nama_device"] }}</h1>
+    <h1>Log Data : {{ $device['nama_device'] }}</h1>
     @php
         $i = 1;
     @endphp
@@ -10,7 +10,7 @@
             <th scope>Date Time</th>
             <th scope>Data</th>
         </tr>
-        @foreach($data as $d)
+        @foreach ($data as $d)
             <tr>
                 <td>{{ $i }}</td>
                 <td>{{ $d['created_at'] }}</td>
