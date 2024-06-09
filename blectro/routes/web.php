@@ -8,13 +8,7 @@ use App\Http\Controllers\DataController;
 use App\Http\Controllers\DatalogController;
 use App\Http\Controllers\NotificationController;
 
-Route::get('/dashboard', function(){
-    return view('dashboard');
-});
-
-Route::get('/dashboard', function(){
-    return view('dashboard');
-});
+Route::get('/dashboard', [DeviceController::class, 'webDashboard']);
 
 Route::get('/devices', [DeviceController::class, 'showDevices']);
 
@@ -22,7 +16,10 @@ Route::get('/devices', [DeviceController::class, 'showDevices']);
 Route::get('/devices/{id}', [DataController::class, 'web_show']);
 Route::get('/datalogs', [DatalogController::class, 'web_show']);
 Route::get('/notification', [NotificationController::class, 'web_show']);
-
+Route::post('/data/{id}', [DeviceController::class, 'updateData']);
+Route::put('/data/{id}', [DataController::class, 'updateData']);
+Route::post('/toggle-led', [DeviceController::class, 'toggleLED'])->name('toggle-led');
+Route::get('/rain-sensor-data', [DataController::class, 'getRainSensorData'])->name('rain-sensor-data');
 Route::get('/nodestate', function(){
     return view('nodestate');
 });

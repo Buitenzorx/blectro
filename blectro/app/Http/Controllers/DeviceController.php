@@ -1,6 +1,10 @@
 <?php
 namespace App\Http\Controllers;
 use App\Models\Device;
+use App\Models\Data;
+use App\Models\Datalog;
+use App\Models\Notification;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 class DeviceController extends Controller
 {
@@ -66,6 +70,17 @@ class DeviceController extends Controller
             "devices" => Device::all()
         ]);
     }
+    public function showDashboard()
+    {
+        $devices = Device::all();
+        
+        return view('dashboard', [
+            "title" => "dashboard",
+            "devices" => $devices
+        ]);
+    }
+
+    
 
         public function getDeviceId($id)
     {
@@ -79,5 +94,77 @@ class DeviceController extends Controller
             "nilai" => Device::find($id)
         ]);
     }   
+    public function getLatestData()
+    {
+        $device = Device::find(1); // Mengambil data dari device dengan ID 1
+        return response()->json($device);
+    }
 
+    public function webDashboard()
+    {
+        // Mengambil data dari device dengan id 3
+        $device = Device::find(3);
+
+        // Memeriksa apakah device ditemukan
+        if ($device) {
+            // Mengambil semua data dari device_id 3 beserta created_at
+            $rainData = Data::where('device_id', 3)->orderBy('created_at')->get();
+
+            // Mendapatkan data dan label untuk grafik
+            $labels = $rainData->pluck('created_at')->map(function ($timestamp) {
+                // Mengambil hanya tanggal dan jam dari timestamp dan mengatur zona waktu ke WIB
+                return Carbon::parse($timestamp)->setTimezone('Asia/Jakarta')->format('H:i:s'); // Format 'Y-m-d H:i:s' untuk tanggal dan jam
+            })->toArray();
+
+            // Memeriksa apakah dataValues kosong
+            $dataValues = $rainData->pluck('data')->toArray();
+            return view('dashboard', [
+                "title" => "dashboard",
+                "rainData" => $rainData,
+                "device_id" => $device->id,
+                "nilai" => $device->nilai,
+                "labels" => $labels,
+                "dataValues" => $dataValues,
+                "devices" => Device::all(),
+                "notificationLog" =>Notification::all()
+            ]);
+        } else {
+            // Jika device tidak ditemukan
+            return "Device tidak ditemukan.";
+        }
+
+    }
+    public function toggleLED(Request $request)
+    {
+        // Log untuk debugging
+        \Log::info('Request Data: ', $request->all());
+
+        $device = Device::find($request->device_id);
+
+        if ($device) {
+            $device->nilai = $request->data; // Asumsikan 1 untuk ON dan 0 untuk OFF
+            $device->save();
+            
+            $data->device_id = $request->device_id;
+            $data->data = $request->data;
+            $data->save();
+
+            // Log untuk debugging
+            \Log::info('Device updated: ', $device->toArray());
+
+            // Catat log atau lakukan tindakan lain yang diperlukan
+            Datalog::create([
+                'device_id' => $request->device_id,
+                'data' => $request->data,
+                'device_name' => $request->device_name,
+                'devicetype' => $request->devicetype,
+                'useraction' => $request->useraction,
+                'statuslog' => $request->statuslog,
+            ]);
+
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false], 404);
+    }
 }

@@ -26,4 +26,6 @@ Route::put('/datalogs/{device_id}', [DatalogController::class, 'update']);
 
 Route::get('/notifications', [NotificationController::class, 'index']);
 Route::post('/notifications', [NotificationController::class, 'store']);
+Route::get('/api/device/latest', [DeviceController::class, 'getLatestData']);
+
 

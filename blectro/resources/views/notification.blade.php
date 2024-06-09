@@ -7,7 +7,7 @@
         <table class="table table-striped-columns" id="dataTable">
             <thead>
                 <tr>
-                    <th scope="col">id</th>
+                    <th scope="col">No</th>
                     <th scope="col">Phone Number</th>
                     <th scope="col">Message</th>
                     <th scope="col">Date Time</th>

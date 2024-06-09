@@ -16,17 +16,16 @@ class NotificationController extends Controller
         $token = "UD#yNu+x__gYSD2dtAqr"; // Token tetap
         $target = $request->input('target'); // Mengambil target dari permintaan HTTP
         $message = $request->input('message'); // Mengambil pesan dari permintaan HTTP
-        
-        // Kirim notifikasi
-        $response = $this->sendNotification($token, $target, $message);
-
-        // Simpan data ke database Notification
         Notification::create([
             'user_phone_number' => $target,
             'message' => $message
         ]);
+        // Kirim notifikasi
+        $response = $this->sendNotification($token, $target, $message);
 
-        // Simpan data ke dalam model NotificationLog
+        // Simpan data ke database Notification
+        
+
         $notificationLog = new Notification;
         $notificationLog->user_phone_number = $target;
         $notificationLog->message = $message;
@@ -42,8 +41,7 @@ class NotificationController extends Controller
     {
         $postData = json_encode(array(
             'target' => $target,
-            'message' => $message,
-            'countryCode' => '62' //optional
+            'message' => $message
         ));
 
         $curl = curl_init();
@@ -73,7 +71,7 @@ class NotificationController extends Controller
 
     public function web_show()
     {
-        $notificationLog = Notification::all(); // Retrieve all log data from the database
+        $notificationLog = Notification::latest()->get();
         return view('notification', compact('notificationLog'));
     }
 }
