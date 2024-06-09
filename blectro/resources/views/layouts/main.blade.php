@@ -25,7 +25,6 @@
 
         .nav-link {
             color: white;
-            /* Menentukan warna teks putih */
         }
     </style>
 </head>
