@@ -8,7 +8,7 @@ use App\Http\Controllers\DataController;
 use App\Http\Controllers\DatalogController;
 use App\Http\Controllers\NotificationController;
 
-Route::get('/dashboard', [DeviceController::class, 'webDashboard']);
+Route::get('/', [DeviceController::class, 'webDashboard']);
 
 Route::get('/devices', [DeviceController::class, 'showDevices']);
 
@@ -26,3 +26,4 @@ Route::get('/nodestate', function(){
 Route::get('/users', function(){
     return view('users');
 });
+

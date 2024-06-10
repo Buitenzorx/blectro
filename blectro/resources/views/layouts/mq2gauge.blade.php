@@ -98,7 +98,7 @@
                 // Konfigurasi sumbu nilai
                 yAxis: {
                     min: 0,
-                    max: 500,
+                    max: 10000,
                     tickPixelInterval: 72,
                     tickPosition: 'inside',
                     tickColor: Highcharts.defaultOptions.chart.backgroundColor || 'white',
@@ -121,7 +121,7 @@
                         borderRadius: '50%'
                     }, {
                         from: 290,
-                        to: 500,
+                        to: 10000,
                         color: '#DF5353', // red
                         thickness: 5,
                         borderRadius: '50%'
