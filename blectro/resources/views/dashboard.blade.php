@@ -312,7 +312,7 @@
                     const deviceId = this.getAttribute('data-device-id');
                     const status = this.checked ? 1 : 0;
 
-                    fetch('{{ route('toggle-led') }}', {
+                    fetch(" {{ route('toggle-led') }} ", {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
