@@ -56,7 +56,7 @@
                 </thead>
                 <tbody>
                     @foreach ($devices as $index => $device)
-                        @if (in_array($device['id'], [4, 5, 6]))
+                        @if (in_array($device['id'], [4, 10, 11]))
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>
