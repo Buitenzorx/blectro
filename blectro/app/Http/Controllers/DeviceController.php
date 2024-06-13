@@ -104,7 +104,7 @@ class DeviceController extends Controller
     {
         // Mengambil data dari device dengan id 3
         $device = Device::find(3);
-
+            
         // Memeriksa apakah device ditemukan
         if ($device) {
             // Mengambil semua data dari device_id 3 beserta created_at
@@ -120,13 +120,13 @@ class DeviceController extends Controller
             $dataValues = $rainData->pluck('data')->toArray();
             return view('dashboard', [
                 "title" => "dashboard",
+                "devices" => Device::all(),
+                "notificationLog" =>Notification::all(),
                 "rainData" => $rainData,
                 "device_id" => $device->id,
                 "nilai" => $device->nilai,
                 "labels" => $labels,
-                "dataValues" => $dataValues,
-                "devices" => Device::all(),
-                "notificationLog" =>Notification::all()
+                "dataValues" => $dataValues
             ]);
         } else {
             // Jika device tidak ditemukan

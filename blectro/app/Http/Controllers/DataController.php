@@ -56,6 +56,7 @@ class DataController extends Controller
                 $buzzer->save();
             }
         }
+        
         // Create new Data entry
         $data = new Data;
         $data->device_id = $request->device_id;
@@ -63,11 +64,11 @@ class DataController extends Controller
         $data->save();
         
         // Check if Device exists and update its 'nilai' field
-        if (Device::where('id', $request->device_id)->exists()) {
-            $device = Device::find($request->device_id);
-            $device->nilai = $request->data;
-            $device->save();
-        }
+        // if (Device::where('id', $request->device_id)->exists()) {
+        //     $device = Device::find($request->device_id);
+        //     $device->nilai = $request->data;
+        //     $device->save();
+        // }
     
     
         $datalog = new Datalog;

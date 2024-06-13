@@ -46,7 +46,6 @@
         .highcharts-data-table tr:hover {
             background: #f1f7ff;
         }
-    }
 </style>
 
 <!-- JavaScript untuk gauge -->
@@ -57,7 +56,20 @@
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Render chart initially using a variable
+        // Function to fetch data and update the chart
+        function fetchDataAndRenderChart() {
+            fetch('https://tugas-akhir.blectric.web.id/blectro/blectro/public/api/devices')
+                .then(response => response.json())
+                .then(data => {
+                    var gaugeValue = data[0]['nilai'];
+                    var chart = Highcharts.charts[1];
+                    chart.series[0].setData([gaugeValue]);
+                })
+                .catch(error => console.error('Error fetching data:', error));
+
+        }
+
+        // Render chart initially
         var gaugeValue = @json($devices[0]['nilai']);
         Highcharts.chart('dhtContainer', {
             chart: {
@@ -145,5 +157,8 @@
                 }
             }]
         });
+        fetchDataAndRenderChart();
+        // Auto-refresh chart every 1 second
+        setInterval(fetchDataAndRenderChart, 1000);
     });
 </script>
