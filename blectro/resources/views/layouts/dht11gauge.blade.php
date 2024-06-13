@@ -67,7 +67,7 @@
         }
 
         // Render chart initially
-        var gaugeValue = @json($devices[3]['nilai']);
+        var gaugeValue = @json($devices[0]['nilai']);
         Highcharts.chart('dhtContainer', {
             chart: {
                 type: 'gauge',
