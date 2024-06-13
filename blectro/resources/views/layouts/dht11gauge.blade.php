@@ -52,15 +52,18 @@
     document.addEventListener('DOMContentLoaded', function() {
         // Function to fetch data and update the chart
         function fetchDataAndRenderChart() {
-            fetch('/blectro/blectro/public/api/devices')
-                .then(response => response.json())
-                .then(data => {
-                    var gaugeValue = data[0]['nilai'];
-                    var chart = Highcharts.charts[1];
-                    chart.series[0].setData([gaugeValue]);
-                })
-                .catch(error => console.error('Error fetching data:', error));
-
+            fetch('/blectro/blectro/public/api/devices', {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                var gaugeValue = data[0]['nilai'];
+                var chart = Highcharts.charts[0];
+                chart.series[0].setData([gaugeValue]);
+            })
+            .catch(error => console.error('Error fetching data:', error));
         }
 
         // Render chart initially
