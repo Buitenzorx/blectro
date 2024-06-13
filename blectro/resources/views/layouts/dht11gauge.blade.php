@@ -58,7 +58,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         // Function to fetch data and update the chart
         function fetchDataAndRenderChart() {
-            fetch('https://tugas-akhir.blectric.web.id/blectro/blectro/public/api/data')
+            fetch('/api/devices')
                 .then(response => response.json())
                 .then(data => {
                     var gaugeValue = data[0]['nilai'];

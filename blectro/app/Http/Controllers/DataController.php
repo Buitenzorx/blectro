@@ -44,7 +44,7 @@ class DataController extends Controller
 
         // Check if the sensor is MQ-2 (device_id 2) and affect the buzzer (device_id 5)
         if ($request->device_id == 2 || $request->device_id == 1) { // Assuming MQ-2 has device_id 2
-            $buzzer = Device::find(7); // Assuming buzzer has device_id 5
+            $buzzer = Device::find(5); // Assuming buzzer has device_id 5
             if ($buzzer) {
                 if ($request->data >= 300 && $request->device_id == 2 ) {
                     $buzzer->nilai = 1; // Set buzzer to 1 if MQ-2 value is >= 300 ppm
@@ -160,7 +160,7 @@ class DataController extends Controller
 
     public function getRainSensorData()
     {
-        $rainSensorData = Data::where('device_id', 3)->orderBy('created_at', 'DESC')->take(7)->get();
+        $rainSensorData = Data::where('device_id', 3)->orderBy('created_at', 'DESC')->take(10)->get();
         $labels = $rainSensorData->pluck('created_at');
         $dataValues = $rainSensorData->pluck('data');
 

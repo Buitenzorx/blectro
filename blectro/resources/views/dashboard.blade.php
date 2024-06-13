@@ -43,8 +43,8 @@
         </div>
         <div class="col-md-1 mt-2">
             <label class="toggle">
-                <input class="toggle-checkbox" type="checkbox" data-device-id="5"
-                    {{ $devices->find(5)->data == 1 ? 'checked' : '' }}>
+                <input class="toggle-checkbox" type="checkbox" data-device-id="10"
+                    {{ $devices->find(10)->data == 1 ? 'checked' : '' }}>
                 <div class="toggle-switch">
                     <div class="toggle-circle"></div> <!-- Lingkaran -->
                 </div>
@@ -53,8 +53,8 @@
         </div>
         <div class="col-md-1 mt-2">
             <label class="toggle">
-                <input class="toggle-checkbox" type="checkbox" data-device-id="6"
-                    {{ $devices->find(6)->data == 1 ? 'checked' : '' }}>
+                <input class="toggle-checkbox" type="checkbox" data-device-id="11"
+                    {{ $devices->find(11)->data == 1 ? 'checked' : '' }}>
                 <div class="toggle-switch">
                     <div class="toggle-circle"></div> <!-- Lingkaran -->
                 </div>
