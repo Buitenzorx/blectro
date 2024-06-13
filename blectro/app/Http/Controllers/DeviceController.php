@@ -118,7 +118,7 @@ class DeviceController extends Controller
 
             // Memeriksa apakah dataValues kosong
             $dataValues = $rainData->pluck('data')->toArray();
-            return view('/', [
+            return view('dashboard', [
                 "title" => "dashboard",
                 "rainData" => $rainData,
                 "device_id" => $device->id,

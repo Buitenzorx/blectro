@@ -8,7 +8,7 @@ use App\Http\Controllers\DataController;
 use App\Http\Controllers\DatalogController;
 use App\Http\Controllers\NotificationController;
 
-Route::get('/', [DeviceController::class, 'webDashboard']);
+Route::get('/dashboard', [DeviceController::class, 'webDashboard']);
 
 Route::get('/devices', [DeviceController::class, 'showDevices']);
 
