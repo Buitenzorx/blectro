@@ -1,6 +1,6 @@
  <!-- Highcharts Figure -->
     <figure class="highcharts-figure">
-        <div id="container"></div>
+        <div id="gaugeContainer"></div>
     </figure>
 
     <!-- CSS untuk gauge -->
