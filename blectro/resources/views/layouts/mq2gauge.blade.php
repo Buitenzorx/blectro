@@ -128,7 +128,7 @@
                 },
                 series: [{
                     name: 'Gas Concentrate',
-                    data: [@json($devices[1]['nilai'])], // Menggunakan nilai dari variabel
+                    data: [gaugeValue1], // Menggunakan nilai dari variabel
                     tooltip: {
                         valueSuffix: ' ppm'
                     },
