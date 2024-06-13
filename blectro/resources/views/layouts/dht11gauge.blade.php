@@ -58,7 +58,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         // Function to fetch data and update the chart
         function fetchDataAndRenderChart() {
-            fetch('/api/devices')
+            fetch('https://tugas-akhir.blectric.web.id/blectro/blectro/public/api/devices')
                 .then(response => response.json())
                 .then(data => {
                     var gaugeValue = data[0]['nilai'];
@@ -70,7 +70,7 @@
         }
 
         // Render chart initially
-        var gaugeValue = @json($device[0]['nilai']);
+        var gaugeValue = @json($devices[0]['nilai']);
         Highcharts.chart('dhtContainer', {
             chart: {
                 type: 'gauge',
@@ -157,7 +157,7 @@
                 }
             }]
         });
-
+        fetchDataAndRenderChart();
         // Auto-refresh chart every 1 second
         setInterval(fetchDataAndRenderChart, 1000);
     });
