@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Datalog extends Model
 {
-    use HasFactory;
+    // use HasFactory;
+    protected $guarded = [];
 }
