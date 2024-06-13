@@ -103,12 +103,12 @@ class DeviceController extends Controller
     public function webDashboard()
     {
         // Mengambil data dari device dengan id 3
-        $device = Device::find(1);
+        $device = Device::find(4);
 
         // Memeriksa apakah device ditemukan
         if ($device) {
             // Mengambil semua data dari device_id 3 beserta created_at
-            $rainData = Data::where('device_id', 1)->orderBy('created_at')->get();
+            $rainData = Data::where('device_id', 4)->orderBy('created_at')->get();
 
             // Mendapatkan data dan label untuk grafik
             $labels = $rainData->pluck('created_at')->map(function ($timestamp) {
