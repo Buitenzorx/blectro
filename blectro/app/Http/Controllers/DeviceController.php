@@ -103,29 +103,35 @@ class DeviceController extends Controller
     public function webDashboard()
     {
         // Mengambil data dari device dengan id 3
-        $device = Device::find(3);
+        $device = Device::find(1);
+
+        // Memeriksa apakah device ditemukan
+        if ($device) {
             // Mengambil semua data dari device_id 3 beserta created_at
-        $rainData = Data::where('device_id', 3)->orderBy('created_at')->get();
+            $rainData = Data::where('device_id', 1)->orderBy('created_at')->get();
 
-        // Mendapatkan data dan label untuk grafik
-        $labels = $rainData->pluck('created_at')->map(function ($timestamp) {
-            // Mengambil hanya tanggal dan jam dari timestamp dan mengatur zona waktu ke WIB
-            return Carbon::parse($timestamp)->setTimezone('Asia/Jakarta')->format('H:i:s'); // Format 'Y-m-d H:i:s' untuk tanggal dan jam
-        })->toArray();
+            // Mendapatkan data dan label untuk grafik
+            $labels = $rainData->pluck('created_at')->map(function ($timestamp) {
+                // Mengambil hanya tanggal dan jam dari timestamp dan mengatur zona waktu ke WIB
+                return Carbon::parse($timestamp)->setTimezone('Asia/Jakarta')->format('H:i:s'); // Format 'Y-m-d H:i:s' untuk tanggal dan jam
+            })->toArray();
 
-        // Memeriksa apakah dataValues kosong
-        $dataValues = $rainData->pluck('data')->toArray();
-        return view('dashboard', [
-            "title" => "dashboard",
-            "rainData" => $rainData,
-            "device_id" => $device->device_id,
-            "nilai" => $device->nilai,
-            "labels" => $labels,
-            "dataValues" => $dataValues,
-            "devices" => Device::all(),
-            "notificationLog" =>Notification::all()
-        ]);
-         
+            // Memeriksa apakah dataValues kosong
+            $dataValues = $rainData->pluck('data')->toArray();
+            return view('dashboard', [
+                "title" => "dashboard",
+                "rainData" => $rainData,
+                "device_id" => $device->id,
+                "nilai" => $device->nilai,
+                "labels" => $labels,
+                "dataValues" => $dataValues,
+                "devices" => Device::all(),
+                "notificationLog" =>Notification::all()
+            ]);
+        } else {
+            // Jika device tidak ditemukan
+            return "Device tidak ditemukan.";
+        }
 
     }
     public function toggleLED(Request $request)
