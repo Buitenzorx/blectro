@@ -288,7 +288,7 @@
 
             // Fungsi untuk melakukan pemanggilan AJAX ke server untuk mendapatkan nilai suhu terbaru
             function fetchLatestTemperature() {
-                fetch('https://tugas-akhir.blectric.web.id/blectro/blectro/public/api/devices') // Pemanggilan ke endpoint yang sesuai
+                fetch('/blectro/blectro/public/api/devices') // Pemanggilan ke endpoint yang sesuai
                     .then(response => response.json())
                     .then(devices => { // Define variabel 'devices' di sini
                         const currentTemperature = devices[0]['nilai']; // Mengambil nilai suhu dari respons
