@@ -160,7 +160,7 @@ class DataController extends Controller
 
     public function getRainSensorData()
     {
-        $rainSensorData = Data::where('device_id', 3)->orderBy('created_at', 'DESC')->take(10)->get();
+        $rainSensorData = Data::where('device_id', 3)->orderBy('created_at', 'DESC')->take(7)->get();
         $labels = $rainSensorData->pluck('created_at');
         $dataValues = $rainSensorData->pluck('data');
 
