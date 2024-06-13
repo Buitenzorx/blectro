@@ -128,6 +128,10 @@ class DeviceController extends Controller
                 "devices" => Device::all(),
                 "notificationLog" =>Notification::all()
             ]);
+        } else {
+            return response()->json([
+            "message" => "WOII."
+            ], 404);
         }
 
     }
