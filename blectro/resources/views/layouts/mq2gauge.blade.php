@@ -51,7 +51,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             function fetchDatamq2AndRenderChart() {
-             fetch('/api/devices', {
+             fetch('/blectro/blectro/public/api/devices', {
                 headers: {
                     'Content-Type': 'application/json'
                 }

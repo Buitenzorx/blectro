@@ -52,7 +52,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         // Function to fetch data and update the chart
         function fetchDataAndRenderChart() {
-            fetch('/api/devices', {
+            fetch('/blectro/blectro/public/api/devices', {
                 headers: {
                     'Content-Type': 'application/json'
                 }
