@@ -26,11 +26,11 @@ class DataController extends Controller
         $data->save();
         
         // Check if Device exists and update its 'nilai' field
-        if (Device::where('id', $request->device_id)->exists()) {
+        // if (Device::where('id', $request->device_id)->exists()) {
             $device = Device::find($request->device_id);
             $device->nilai = $request->data;
             $device->save();
-        }
+        // }
         
         // Log the data
         $datalog = new Datalog;
