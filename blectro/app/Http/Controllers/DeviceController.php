@@ -115,15 +115,12 @@ class DeviceController extends Controller
                 // Mengambil hanya tanggal dan jam dari timestamp dan mengatur zona waktu ke WIB
                 return Carbon::parse($timestamp)->setTimezone('Asia/Jakarta')->format('H:i:s'); // Format 'Y-m-d H:i:s' untuk tanggal dan jam
             })->toArray();
-
+            
             // Memeriksa apakah dataValues kosong
             $dataValues = $rainData->pluck('data')->toArray();
             return view('dashboard', [
                 "title" => "dashboard",
-                "device_id" => $device->id,
-                "nilai" => $device->nilai,
-                "devices" => Device::all(),
-                "notificationLog" =>Notification::all()
+                "devices" => Device::all()
             ]);
         } else {
             return response()->json([
