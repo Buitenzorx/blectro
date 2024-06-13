@@ -128,9 +128,6 @@ class DeviceController extends Controller
                 "devices" => Device::all(),
                 "notificationLog" =>Notification::all()
             ]);
-        } else {
-            // Jika device tidak ditemukan
-            return "Device tidak ditemukan.";
         }
 
     }
