@@ -120,17 +120,14 @@ class DeviceController extends Controller
             $dataValues = $rainData->pluck('data')->toArray();
             return view('dashboard', [
                 "title" => "dashboard",
-                "rainData" => $rainData,
                 "device_id" => $device->id,
                 "nilai" => $device->nilai,
-                "labels" => $labels,
-                "dataValues" => $dataValues,
                 "devices" => Device::all(),
                 "notificationLog" =>Notification::all()
             ]);
         } else {
             return response()->json([
-            "message" => "WOII."
+            "message" => "Device tidak ditemukan."
             ], 404);
         }
 
