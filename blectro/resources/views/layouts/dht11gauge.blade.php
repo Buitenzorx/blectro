@@ -46,14 +46,28 @@
         .highcharts-data-table tr:hover {
             background: #f1f7ff;
         }
-    }
 </style>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var gaugeValue = @json($devices[0]['nilai']); // Mengambil nilai dari variabel PHP
+        // Function to fetch data and update the chart
+        function fetchDataAndRenderChart() {
+            fetch('/api/devices', {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                var gaugeValue = data[0]['nilai'];
+                var chart = Highcharts.charts[0];
+                chart.series[0].setData([gaugeValue]);
+            })
+            .catch(error => console.error('Error fetching data:', error));
+        }
 
-        // Konfigurasi chart Highcharts untuk gauge DHT11
+        // Render chart initially
+        var gaugeValue = @json($devices[0]['nilai']);
         Highcharts.chart('dhtContainer', {
             chart: {
                 type: 'gauge',
@@ -140,5 +154,8 @@
                 }
             }]
         });
+        fetchDataAndRenderChart();
+        // Auto-refresh chart every 1 second
+        setInterval(fetchDataAndRenderChart, 30000);
     });
 </script>
