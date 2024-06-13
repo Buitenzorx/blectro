@@ -20,16 +20,16 @@ class DataController extends Controller
     public function store(Request $request)
     {
         // Create new Data entry
-        $data = new Data;
-        $data->device_id = $request->device_id;
-        $data->data = $request->data;
-        $data->save();
+        // $data = new Data;
+        // $data->device_id = $request->device_id;
+        // $data->data = $request->data;
+        // $data->save();
         
-        // Check if Device exists and update its 'nilai' field
-        // if (Device::where('id', $request->device_id)->exists()) {
-            $device = Device::find($request->device_id);
-            $device->nilai = $request->data;
-            $device->save();
+        // // Check if Device exists and update its 'nilai' field
+        // // if (Device::where('id', $request->device_id)->exists()) {
+        //     $device = Device::find($request->device_id);
+        //     $device->nilai = $request->data;
+        //     $device->save();
         // }
         
         // Log the data
@@ -65,9 +65,9 @@ class DataController extends Controller
         
         // Check if Device exists and update its 'nilai' field
         // if (Device::where('id', $request->device_id)->exists()) {
-        //     $device = Device::find($request->device_id);
-        //     $device->nilai = $request->data;
-        //     $device->save();
+        $device = Device::find($request->device_id);
+        $device->nilai = $request->data;
+        $device->save();
         // }
     
     
