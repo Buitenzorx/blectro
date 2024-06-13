@@ -1,6 +1,6 @@
  <!-- Highcharts Figure -->
     <figure class="highcharts-figure">
-        <div id="gaugeContainer"></div>
+        <div id="gaugecontainer"></div>
     </figure>
 
     <!-- CSS untuk gauge -->
@@ -51,11 +51,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             function fetchDatamq2AndRenderChart() {
-             fetch('/blectro/blectro/public/api/devices', {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
+             fetch('/blectro/blectro/public/api/devices')
                  .then(response => response.json())
                  .then(data => {
                      var gaugeValue = data[1]['nilai'];
