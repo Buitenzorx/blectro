@@ -153,6 +153,6 @@
         });
         fetchDataAndRenderChart();
         // Auto-refresh chart every 1 second
-        setInterval(fetchDataAndRenderChart, 2000);
+        setInterval(fetchDataAndRenderChart, 30000);
     });
 </script>

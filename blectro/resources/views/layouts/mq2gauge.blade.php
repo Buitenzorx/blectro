@@ -157,6 +157,6 @@
                     }
                 }]
             });
-            setInterval(fetchDatamq2AndRenderChart, 1000);
+            setInterval(fetchDatamq2AndRenderChart, 20000);
         });
     </script>
