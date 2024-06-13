@@ -118,7 +118,7 @@ class DeviceController extends Controller
         return view('dashboard', [
             "title" => "dashboard",
             "rainData" => $rainData,
-            "device_id" => $device->id,
+            "device_id" => $device->device_id,
             "nilai" => $device->nilai,
             "labels" => $labels,
             "dataValues" => $dataValues,
