@@ -57,7 +57,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             function fetchDatamq2AndRenderChart() {
-             fetch('/api/devices')
+             fetch('https://tugas-akhir.blectric.web.id/blectro/blectro/public/api/devices')
                  .then(response => response.json())
                  .then(data => {
                      var gaugeValue = data[1]['nilai'];
