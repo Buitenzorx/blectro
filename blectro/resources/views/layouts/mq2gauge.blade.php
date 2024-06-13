@@ -51,7 +51,11 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             function fetchDatamq2AndRenderChart() {
-             fetch('/blectro/blectro/public/api/devices')
+             fetch('/blectro/blectro/public/api/devices', {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
                  .then(response => response.json())
                  .then(data => {
                      var gaugeValue = data[1]['nilai'];
