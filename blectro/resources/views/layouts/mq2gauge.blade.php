@@ -68,7 +68,7 @@
             Highcharts.chart('gaugeContainer', {
             
                 chart: {
-                    type: 'gauge',
+                    type: 'gauge',  
                     plotBackgroundColor: 'black',
                     plotBackgroundImage: null,
                     plotBorderWidth: 0,
