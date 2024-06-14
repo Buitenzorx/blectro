@@ -26,10 +26,9 @@
     <br>
     <div class="row">
         <div class="col-md-3 d-flex justify-content-center align-items-center">
-            <div id="dhtContainer"></div>
-        </div>
-        <div class="col-md-3 d-flex justify-content-center align-items-center">
-            <div id="gaugeContainer"></div>
+            <figure class="highcharts-figure">
+                <div id="container"></div>
+            </figure>
         </div>
         <div class="col-md-1 mt-2">
             <label class="toggle">
@@ -127,20 +126,55 @@
     </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
-            @include('layouts.mq2gauge')
-        </div>
-        <div class="col-md-6">
-            @include('layouts.dht11gauge')
-        </div>
-    </div>
-    <div class="row">
         <div class="col-md-12">
             @include('layouts.raingraph')
         </div>
     </div>
 
     <style>
+        .highcharts-figure,
+        .highcharts-data-table table {
+            min-width: 310px;
+            max-width: 500px;
+            margin: 1em auto;
+        }
+
+        .highcharts-data-table table {
+            font-family: Verdana, sans-serif;
+            border-collapse: collapse;
+            border: 1px solid #ebebeb;
+            margin: 10px auto;
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .highcharts-data-table caption {
+            padding: 1em 0;
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        .highcharts-data-table th {
+            font-weight: 600;
+            padding: 0.5em;
+        }
+
+        .highcharts-data-table td,
+        .highcharts-data-table th,
+        .highcharts-data-table caption {
+            padding: 0.5em;
+        }
+
+        .highcharts-data-table thead tr,
+        .highcharts-data-table tr:nth-child(even) {
+            background: #f8f8f8;
+        }
+
+        .highcharts-data-table tr:hover {
+            background: #f1f7ff;
+        }
+
         .fa-bell {
             margin-left: 20px;
         }
@@ -251,6 +285,116 @@
     </style>
 
     <script>
+        Highcharts.chart('container', {
+
+        chart: {
+            type: 'gauge',
+            plotBackgroundColor: null,
+            plotBackgroundImage: null,
+            plotBorderWidth: 0,
+            plotShadow: false,
+            height: '80%'
+        },
+
+        title: {
+            text: 'Speedometer'
+        },
+
+        pane: {
+            startAngle: -90,
+            endAngle: 89.9,
+            background: null,
+            center: ['50%', '75%'],
+            size: '110%'
+        },
+
+        // the value axis
+        yAxis: {
+            min: 0,
+            max: 200,
+            tickPixelInterval: 72,
+            tickPosition: 'inside',
+            tickColor: Highcharts.defaultOptions.chart.backgroundColor || '#FFFFFF',
+            tickLength: 20,
+            tickWidth: 2,
+            minorTickInterval: null,
+            labels: {
+                distance: 20,
+                style: {
+                    fontSize: '14px'
+                }
+            },
+            lineWidth: 0,
+            plotBands: [{
+                from: 0,
+                to: 130,
+                color: '#55BF3B', // green
+                thickness: 20,
+                borderRadius: '50%'
+            }, {
+                from: 150,
+                to: 200,
+                color: '#DF5353', // red
+                thickness: 20,
+                borderRadius: '50%'
+            }, {
+                from: 120,
+                to: 160,
+                color: '#DDDF0D', // yellow
+                thickness: 20
+            }]
+        },
+
+        series: [{
+            name: 'Speed',
+            data: [80],
+            tooltip: {
+                valueSuffix: ' km/h'
+            },
+            dataLabels: {
+                format: '{y} km/h',
+                borderWidth: 0,
+                color: (
+                    Highcharts.defaultOptions.title &&
+                    Highcharts.defaultOptions.title.style &&
+                    Highcharts.defaultOptions.title.style.color
+                ) || '#333333',
+                style: {
+                    fontSize: '16px'
+                }
+            },
+            dial: {
+                radius: '80%',
+                backgroundColor: 'gray',
+                baseWidth: 12,
+                baseLength: '0%',
+                rearLength: '0%'
+            },
+            pivot: {
+                backgroundColor: 'gray',
+                radius: 6
+            }
+
+        }]
+
+    });
+
+    // Add some life
+    setInterval(() => {
+        const chart = Highcharts.charts[0];
+        if (chart && !chart.renderer.forExport) {
+            const point = chart.series[0].points[0],
+                inc = Math.round((Math.random() - 0.5) * 20);
+
+            let newVal = point.y + inc;
+            if (newVal < 0 || newVal > 200) {
+                newVal = point.y - inc;
+            }
+
+            point.update(newVal);
+        }
+
+    }, 3000);
         document.addEventListener('DOMContentLoaded', function() {
             function updateClock() {
                 const clock = document.getElementById('digitalClock');
