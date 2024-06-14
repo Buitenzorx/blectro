@@ -285,8 +285,9 @@
     </style>
 
     <script>
+        var gaugeValue = @json($devices[0]['nilai']);
         Highcharts.chart('container', {
-
+        
         chart: {
             type: 'gauge',
             plotBackgroundColor: null,
@@ -347,7 +348,7 @@
 
         series: [{
             name: 'Speed',
-            data: [80],
+            data: [gaugeValue],
             tooltip: {
                 valueSuffix: ' km/h'
             },
